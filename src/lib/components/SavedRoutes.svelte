@@ -18,6 +18,7 @@
 {#if routes.length === 0}
 	<p class="hint">No saved routes yet. Draw a route and hit Save — it's stored locally in your browser.</p>
 {:else}
+	<div class="card-title">Saved routes</div>
 	<ul>
 		{#each routes as r (r.id)}
 			<li>
@@ -41,9 +42,18 @@
 		margin: 12px 2px 2px;
 	}
 
+	.card-title {
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--text2);
+		margin-bottom: 8px;
+	}
+
 	ul {
 		list-style: none;
-		margin: 12px 0 0;
+		margin: 0;
 		padding: 0;
 		display: flex;
 		flex-direction: column;
@@ -53,7 +63,7 @@
 	li {
 		display: flex;
 		gap: 6px;
-		align-items: stretch;
+		align-items: center;
 	}
 
 	.item {
@@ -96,10 +106,15 @@
 	}
 
 	.del {
-		padding: 0 12px;
-		font-size: 12px;
-		border-radius: 12px;
-		border: 1px solid transparent;
+		width: 28px;
+		height: 28px;
+		flex: none;
+		display: grid;
+		place-items: center;
+		padding: 0;
+		font-size: 11px;
+		border-radius: 8px;
+		border: 0;
 		background: transparent;
 		color: var(--text2);
 		cursor: pointer;

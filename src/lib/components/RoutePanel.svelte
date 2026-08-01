@@ -714,7 +714,6 @@
 	}
 
 	.popover :global(ul) {
-		margin-top: 0;
 		max-height: 220px;
 		overflow-y: auto;
 	}
