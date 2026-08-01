@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { untrack } from 'svelte';
+	import { parseTime, fmtTime } from '$lib/pace';
 
 	let {
 		distanceKm,
@@ -7,42 +7,15 @@
 		timeStr = $bindable('')
 	}: { distanceKm: number; paceStr?: string; timeStr?: string } = $props();
 
-	/** Parse "m:ss" / "h:mm:ss" / plain minutes into seconds */
-	function parseTime(s: string): number | null {
-		const parts = s.trim().split(':').map(Number);
-		if (parts.some((p) => Number.isNaN(p) || p < 0) || parts.length > 3 || !s.trim())
-			return null;
-		let sec = 0;
-		for (const p of parts) sec = sec * 60 + p;
-		return sec > 0 ? sec : null;
-	}
-
-	function fmt(sec: number): string {
-		sec = Math.round(sec);
-		const h = Math.floor(sec / 3600);
-		const m = Math.floor((sec % 3600) / 60);
-		const s = sec % 60;
-		return h
-			? `${h}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
-			: `${m}:${String(s).padStart(2, '0')}`;
-	}
-
 	function onPaceInput() {
 		const p = parseTime(paceStr);
-		if (p && distanceKm > 0) timeStr = fmt(p * distanceKm);
+		if (p && distanceKm > 0) timeStr = fmtTime(p * distanceKm);
 	}
 
 	function onTimeInput() {
 		const t = parseTime(timeStr);
-		if (t && distanceKm > 0) paceStr = fmt(t / distanceKm);
+		if (t && distanceKm > 0) paceStr = fmtTime(t / distanceKm);
 	}
-
-	// Keep total time in sync as the route distance changes (without clobbering edits)
-	$effect(() => {
-		const dist = distanceKm;
-		const p = untrack(() => parseTime(paceStr));
-		timeStr = p && dist > 0 ? fmt(p * dist) : '';
-	});
 </script>
 
 <div class="card">

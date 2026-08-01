@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, untrack } from 'svelte';
 	import { route } from '$lib/stores/route.svelte';
 	import { theme } from '$lib/stores/theme.svelte';
 	import ElevationChart from './ElevationChart.svelte';
@@ -9,6 +9,7 @@
 	import { loadRoutes, saveRoute, deleteRoute, type SavedRoute } from '$lib/api/storage';
 	import { buildShareHash } from '$lib/api/share';
 	import { toGpx } from '$lib/api/gpx';
+	import { parseTime, fmtTime } from '$lib/pace';
 
 	type Pop = 'pace' | 'saved' | 'elev' | 'save';
 
@@ -44,6 +45,14 @@
 			}
 		}, 450);
 		return () => clearTimeout(t);
+	});
+
+	// Keep total time in sync with the route distance live (bar readout),
+	// even while the pace popover is closed
+	$effect(() => {
+		const dist = route.distanceKm;
+		const p = untrack(() => parseTime(paceStr));
+		timeStr = p && dist > 0 ? fmtTime(p * dist) : '';
 	});
 
 	const distLabel = $derived(
