@@ -91,32 +91,43 @@
 			layout: { 'line-cap': 'round', 'line-join': 'round' },
 			paint: { 'line-color': accent(), 'line-width': 4.5 }
 		});
+		// km splits: subtle dots with an offset label — clearly NOT interactive handles
 		map.addLayer({
 			id: 'splits-circle',
 			type: 'circle',
 			source: 'splits',
 			paint: {
-				'circle-radius': 8,
-				'circle-color': casing(),
-				'circle-stroke-color': accent(),
-				'circle-stroke-width': 1.5
+				'circle-radius': 3.5,
+				'circle-color': accent(),
+				'circle-opacity': 0.85
 			}
 		});
 		map.addLayer({
 			id: 'splits-label',
 			type: 'symbol',
 			source: 'splits',
-			layout: { 'text-field': ['get', 'km'], 'text-size': 9, 'text-font': ['Noto Sans Regular'] },
-			paint: { 'text-color': accent() }
+			layout: {
+				'text-field': ['get', 'km'],
+				'text-size': 10,
+				'text-font': ['Noto Sans Regular'],
+				'text-offset': [0, -1.1],
+				'text-allow-overlap': true
+			},
+			paint: {
+				'text-color': accent(),
+				'text-halo-color': casing(),
+				'text-halo-width': 1.5
+			}
 		});
+		// waypoints: solid filled handles — visibly grabbable
 		map.addLayer({
 			id: 'waypoints',
 			type: 'circle',
 			source: 'waypoints',
 			paint: {
-				'circle-radius': 6,
-				'circle-color': casing(),
-				'circle-stroke-color': accent(),
+				'circle-radius': 7,
+				'circle-color': accent(),
+				'circle-stroke-color': casing(),
 				'circle-stroke-width': 2.5
 			}
 		});
