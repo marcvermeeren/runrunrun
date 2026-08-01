@@ -6,13 +6,15 @@ A minimal web app to plan running routes on a map and see the distance in km.
 
 - **Click-to-draw routes** snapped to roads/paths (Valhalla pedestrian routing)
 - **Live distance** in km with numbered split markers every kilometer
-- **Elevation profile** from free Terrarium terrain tiles (ascent/descent)
+- **Drag waypoints** to adjust the route — segments re-snap on drop
+- **Elevation profile** with a hover scrubber that tracks your position on the map
 - **Pace calculator** — enter pace ↔ total time
-- **Loop mode** — one click closes the route back to the start
+- **Loop & out-and-back modes** — close the route or mirror it back in one click
+- **GPX export** with elevation — straight to your watch or Strava
+- **Share links** — routes encoded in the URL, no backend needed
 - **Undo/redo** (⌘Z / ⌘⇧Z), clear, straight-line fallback if routing fails
 - **Save routes locally** (localStorage) and reload them later
-- Clean frosted-glass UI with automatic light/dark mode
-- Mobile-friendly bottom-sheet layout, geolocate button
+- Light/dark mode toggle, remembers your map position
 
 ## Stack
 
