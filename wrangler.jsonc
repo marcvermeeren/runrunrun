@@ -1,0 +1,18 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "runrunrun",
+	"compatibility_date": "2026-07-31",
+	// Static-only Worker serving the SvelteKit build output
+	"assets": {
+		"directory": "./build",
+		"not_found_handling": "single-page-application"
+	},
+	// Custom domains (zone is in this Cloudflare account)
+	"routes": [
+		{ "pattern": "runrunrun.xyz", "custom_domain": true },
+		{ "pattern": "www.runrunrun.xyz", "custom_domain": true }
+	],
+	"observability": {
+		"enabled": true
+	}
+}
