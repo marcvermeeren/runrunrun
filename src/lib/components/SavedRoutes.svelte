@@ -21,7 +21,7 @@
 	<div class="card-title">Saved routes</div>
 	<ul>
 		{#each routes as r (r.id)}
-			<li>
+			<li class="row">
 				<button class="item" onclick={() => onload(r)}>
 					<span class="name">{r.name}</span>
 					<span class="meta">{r.distanceKm.toFixed(2)} km · {fmtDate(r.createdAt)}</span>
@@ -53,17 +53,26 @@
 
 	ul {
 		list-style: none;
-		margin: 0;
+		margin: 6px 0 0;
 		padding: 0;
 		display: flex;
 		flex-direction: column;
 		gap: 6px;
 	}
 
-	li {
+	li.row {
 		display: flex;
-		gap: 6px;
 		align-items: center;
+		gap: 2px;
+		border: 1px solid var(--border);
+		background: var(--fill);
+		border-radius: 12px;
+		padding-right: 4px;
+		transition: background 0.15s;
+	}
+
+	li.row:hover {
+		background: var(--fill-hover);
 	}
 
 	.item {
@@ -73,22 +82,11 @@
 		flex-direction: column;
 		gap: 2px;
 		text-align: left;
-		padding: 9px 12px;
-		border-radius: 12px;
-		border: 1px solid var(--border);
-		background: var(--fill);
+		padding: 8px 4px 8px 12px;
+		border: 0;
+		border-radius: 10px;
+		background: transparent;
 		cursor: pointer;
-		transition:
-			background 0.15s,
-			transform 0.08s;
-	}
-
-	.item:hover {
-		background: var(--fill-hover);
-	}
-
-	.item:active {
-		transform: scale(0.98);
 	}
 
 	.name {
@@ -106,13 +104,14 @@
 	}
 
 	.del {
-		width: 28px;
-		height: 28px;
+		width: 26px;
+		height: 26px;
 		flex: none;
 		display: grid;
 		place-items: center;
 		padding: 0;
-		font-size: 11px;
+		margin-right: 4px;
+		font-size: 10.5px;
 		border-radius: 8px;
 		border: 0;
 		background: transparent;
@@ -125,6 +124,6 @@
 
 	.del:hover {
 		color: #ff3b30;
-		background: var(--fill);
+		background: var(--panel-solid);
 	}
 </style>
