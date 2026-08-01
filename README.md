@@ -1,6 +1,6 @@
 # runrunrun 🏃
 
-A minimal, macOS-feel web app to plan running routes on a map and see the distance in km.
+A minimal web app to plan running routes on a map and see the distance in km.
 
 ## Features
 
@@ -11,7 +11,7 @@ A minimal, macOS-feel web app to plan running routes on a map and see the distan
 - **Loop mode** — one click closes the route back to the start
 - **Undo/redo** (⌘Z / ⌘⇧Z), clear, straight-line fallback if routing fails
 - **Save routes locally** (localStorage) and reload them later
-- Frosted-glass, Apple-style UI with automatic light/dark mode
+- Clean frosted-glass UI with automatic light/dark mode
 - Mobile-friendly bottom-sheet layout, geolocate button
 
 ## Stack
