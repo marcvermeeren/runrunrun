@@ -1,6 +1,6 @@
 # runrunrun 🏃
 
-A minimal web app to plan running routes on a map and see the distance in km.
+A minimal web app to plan running routes.
 
 ## Features
 
