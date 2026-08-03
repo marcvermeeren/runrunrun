@@ -41,6 +41,14 @@
 	}
 }
 
+@font-face {
+	font-family: 'Alan Sans';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('/fonts/alan-sans-700.woff2') format('woff2');
+}
+
 * {
 	box-sizing: border-box;
 }

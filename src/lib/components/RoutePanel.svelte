@@ -139,6 +139,8 @@
 	<div class="toast">{route.notice}</div>
 {/if}
 
+<div class="logo">runrunrun</div>
+
 <div class="dock">
 	{#if popover}
 		<div class="popover">
@@ -170,16 +172,14 @@
 			<div class="distline">
 				<span class="distance">{distLabel.n}</span><span class="unit">{distLabel.u}</span>
 			</div>
-			<div class="sub">
-				{#if route.distanceKm === 0 && !route.waypoints.length}
-					click the map to start
-				{:else}
+			{#if route.waypoints.length}
+				<div class="sub">
 					{route.waypoints.length}
 					{route.waypoints.length === 1 ? 'pt' : 'pts'}{#if route.closed}
 						· loop{/if}{#if route.busy}
 						· <span class="pulse">routing…</span>{/if}
-				{/if}
-			</div>
+				</div>
+			{/if}
 		</div>
 
 		{#if route.distanceKm > 0}
@@ -769,9 +769,30 @@
 		}
 	}
 
+	.logo {
+		position: fixed;
+		top: 14px;
+		left: 50%;
+		transform: translateX(-50%);
+		font-family: 'Alan Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+		font-weight: 700;
+		font-size: 15px;
+		letter-spacing: -0.01em;
+		color: var(--text);
+		background: var(--panel);
+		backdrop-filter: blur(24px) saturate(1.8);
+		-webkit-backdrop-filter: blur(24px) saturate(1.8);
+		border: 1px solid var(--border);
+		border-radius: 999px;
+		box-shadow: var(--shadow);
+		padding: 6px 15px 7px;
+		z-index: 10;
+		user-select: none;
+	}
+
 	.toast {
 		position: fixed;
-		top: 16px;
+		top: 60px;
 		left: 50%;
 		transform: translateX(-50%);
 		background: rgba(40, 40, 42, 0.85);
